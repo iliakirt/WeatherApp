@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Widget</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="weather-widget">
+        <div class="header">
+            <div class="date-selector">
+                <button class="date-btn active" data-action="now">Now</button>
+                <button class="date-btn" data-action="today">Today</button>
+                <div class="date-picker">
+                    <input type="date" class="date-picker-input" id="datePicker" min="">
+                </div>
+            </div>
+        </div>
+
+        <div class="current-weather">
+            <div class="weather-left">
+                <div class="temperature" id="temperature">--°C</div>
+                <div class="weather-description" id="weatherDescription">--</div>
+            </div>
+            <div class="weather-icon" id="weatherIcon">
+                <i class="fas fa-question"></i>
+            </div>
+        </div>
+
+        <div class="weather-between">
+        </div><br>
+
+        <div class="weather-details">
+            <div class="detail-card">
+                <div class="detail-value" id="feelsLike">--<span>°C</span></div>
+                <div class="detail-label">Feels like</div>
+            </div>
+            <div class="detail-card">
+                <div class="detail-value" id="windSpeed">-- <span>m/s</span></div>
+                <div class="detail-label">Wind</div>
+            </div>
+            <div class="detail-card">
+                <div class="detail-value" id="windGust">-- m/s</div>
+                <div class="detail-label">Wind Gust</div>
+            </div>
+            <div class="detail-card">
+                <div class="detail-value" id="windDirection">--°</div>
+                <div class="detail-label">Wind Deg</div>
+            </div>
+            <div class="detail-card">
+                <div class="detail-value" id="humidity">--%</div>
+                <div class="detail-label">Humidity</div>
+            </div>
+            <div class="detail-card">
+                <div class="detail-value" id="pressure">-- hPa</div>
+                <div class="detail-label">Pressure</div>
+            </div>
+        </div>
+
+        <div class="chart-bar">
+        </div><br>
+
+        <div class="chart-container">
+            <div class="chart-title">Weekly Variation</div><br>
+            <canvas id="weatherChart"></canvas>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="index1.js"></script>
+</body>
+</html>
