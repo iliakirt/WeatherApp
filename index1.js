@@ -1,5 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize date picker
+
+    // City coordinates mapping
+    const cityCoordinates = {
+        'thessaloniki': { lat: 40.5872, lon: 22.9482 },
+        'athens': { lat: 37.9838, lon: 23.7275 },
+        'patra': { lat: 38.2466, lon: 21.7346 }
+    };
+
+    // Initialize elements
+    const citySelector = document.getElementById('cities');
     const datePicker = document.getElementById('datePicker');
     const today = new Date();
     const maxDate = new Date();
@@ -43,9 +52,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Fetch weather data
-    fetchWeatherData();
+    fetchWeatherData(cityCoordinates['thessaloniki'].lat, cityCoordinates['thessaloniki'].lon);
     
     // Event listeners
+    citySelector.addEventListener('change', function() {
+        const selectedCity = this.value;
+        const coords = cityCoordinates[selectedCity];
+        fetchWeatherData(coords.lat, coords.lon);
+    });
+
     document.querySelectorAll('.date-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             document.querySelectorAll('.date-btn').forEach(b => b.classList.remove('active'));
@@ -103,11 +118,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     let weatherData = null;
     
-    async function fetchWeatherData() {
+    async function fetchWeatherData(latitude, longitude) {
         try {
-            const latitude = 40.5872;
-            const longitude = 22.9482;
-            
             const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&hourly=temperature_2m,relativehumidity_2m,apparent_temperature,surface_pressure,weathercode,windspeed_10m,windgusts_10m,winddirection_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant,shortwave_radiation_sum&timezone=auto`);
             
             if (!response.ok) {

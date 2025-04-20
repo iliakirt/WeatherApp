@@ -41,6 +41,28 @@ body {
     padding-bottom: 15px;
 }
 
+#cities {
+    background: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+#cities.active {
+    background-color: #B7F4B7;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+#cities:hover {
+    background-color: lightgrey;
+}
+
+#cities.active:hover {
+    background-color: var(--secondary-color);
+}
+
 .date-selector {
     display: flex;
     gap: 10px;
